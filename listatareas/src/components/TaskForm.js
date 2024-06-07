@@ -1,22 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './TaskForm.css'; // Importa el archivo CSS
 
-const TaskForm = ({ addTask, goBack }) => { // Agrega goBack como una prop
+const TaskForm = ({ addTask, goBack, initialTask }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+
+  useEffect(() => {
+    if (initialTask) {
+      setTitle(initialTask.title || '');
+      setDescription(initialTask.description || '');
+    }
+  }, [initialTask]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title.trim() && description.trim()) {
-      addTask({ title, description });
+      if (initialTask) {
+        // Si hay una tarea inicial, se trata de una edición
+        addTask({ ...initialTask, title, description });
+      } else {
+        // Si no hay tarea inicial, se trata de una adición de nueva tarea
+        addTask({ title, description });
+      }
       setTitle('');
       setDescription('');
-      goBack(); // Llama a goBack
+      goBack();
     }
   };
 
   return (
-      <form onSubmit={handleSubmit} className="form-container">
+    <form onSubmit={handleSubmit} className="form-container">
       <input 
         type="text" 
         value={title} 
@@ -28,9 +41,8 @@ const TaskForm = ({ addTask, goBack }) => { // Agrega goBack como una prop
         onChange={(e) => setDescription(e.target.value)} 
         placeholder="Descripción de la tarea" 
       />
-      <button type="submit">Agregar</button>
+      <button type="submit">{initialTask ? 'Guardar' : 'Agregar'}</button>
     </form>
-    
   );
 };
 
