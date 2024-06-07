@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import './TaskForm.css'; // Importa el archivo CSS
 
-const TaskForm = ({ addTask }) => {
+const TaskForm = ({ addTask, goBack }) => { // Agrega goBack como una prop
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
@@ -10,11 +11,12 @@ const TaskForm = ({ addTask }) => {
       addTask({ title, description });
       setTitle('');
       setDescription('');
+      goBack(); // Llama a goBack
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form-container">
       <input 
         type="text" 
         value={title} 
@@ -28,6 +30,7 @@ const TaskForm = ({ addTask }) => {
       />
       <button type="submit">Agregar</button>
     </form>
+    
   );
 };
 

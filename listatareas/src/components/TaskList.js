@@ -1,13 +1,24 @@
 import React from 'react';
-import Task from './Task';
 
-const TaskList = ({ tasks, removeTask, selectTask }) => {
+const TaskList = ({ tasks, selectTask, markTaskCompleted }) => {
   return (
-    <ul>
+    <div>
       {tasks.map((task, index) => (
-        <Task key={index} task={task} index={index} removeTask={removeTask} selectTask={selectTask} />
+        <div key={index} style={{ marginBottom: '10px' }}>
+          <input 
+            type="checkbox" 
+            checked={task.completed} 
+            onChange={() => markTaskCompleted(index)} 
+          />
+          <span 
+            onClick={() => selectTask(index)} 
+            style={{ cursor: 'pointer', textDecoration: task.completed ? 'line-through' : 'none' }}
+          >
+            {task.title}
+          </span>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 };
 

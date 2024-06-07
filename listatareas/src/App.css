@@ -1,38 +1,65 @@
-.App {
-  text-align: center;
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #61677A;
+  overflow: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app-container {
   display: flex;
-  flex-direction: column;
+  height: 90vh;
+  margin: 2%; /* Agrega un margen desde el borde de la pantalla */
+}
+
+.task-list-container {
+  width: 15%;
+  padding: 20px;
+  background-color: #272829;
+  border-right: 1px solid #ccc;
+  overflow-y: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Añade una sombra para mejor visualización */
+  border-radius: 10px; /* Añade esquinas redondeadas */
+}
+
+.task-details-container {
+  width: 85%;
+  padding: 20px;
+  background-color: #272829;
+  overflow-y: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Añade una sombra para mejor visualización */
+  margin-left: 1%;
+  border-radius: 10px; /* Añade esquinas redondeadas */
+}
+
+h2 {
+  color: #FFF6E0;
+}
+
+button {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+form {
+  margin-top: 20px;
+}
+
+h3 , span, p {
+  color: #D8D9DA;
+}
+
+.no-task-selected {
+  display: flex; /* Utiliza flexbox para centrar la imagen */
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100%; /* Asegura que el contenedor ocupe toda la altura disponible */
+  opacity: 0.2; /* Hace la imagen un poco transparente */
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.no-task-selected img {
+  max-width: 80%; /* Limita el tamaño máximo de la imagen para que no sea demasiado grande */
 }
