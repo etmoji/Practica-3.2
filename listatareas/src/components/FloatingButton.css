@@ -1,0 +1,31 @@
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .floating-button:hover {
+    background-color: rgb(59, 59, 59);
+  }
+  
+
+.floating-button.delete {
+  background-color: #ff0000; /* Cambia el color de fondo a rojo */
+  right: 90px; /* Ajusta la posición para evitar que se superponga con el botón "+" */
+}
+
+.floating-button.delete:hover {
+  background-color: #cc0000; /* Cambia el color de fondo al pasar el ratón sobre el botón */
+}

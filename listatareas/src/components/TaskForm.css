@@ -1,0 +1,37 @@
+/* TaskForm.css */
+
+.form-container {
+    padding: 20px;
+    background-color: #61677A;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-container input[type="text"],
+  .form-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Asegura que el tamaño del cuadro incluya el relleno y el borde */
+  }
+  
+  .form-container textarea {
+    resize: vertical; /* Permite que el área de texto sea redimensionable verticalmente */
+    color: #272829;
+  }
+  
+  .form-container button[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .form-container button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
