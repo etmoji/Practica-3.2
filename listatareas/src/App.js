@@ -26,13 +26,13 @@ const App = () => {
   const [showForm, setShowForm] = useState(false);
 
   const addTask = (task) => {
-    setTasks([...tasks, { ...task, completed: false }]);
+    setTasks(sortTasks([...tasks, { ...task, completed: false }]));
     setShowForm(false);
   };
 
   const removeTask = (index) => {
     const newTasks = tasks.filter((_, i) => i !== index);
-    setTasks(newTasks);
+    setTasks(sortTasks(newTasks));
     setSelectedTask(null);
   };
 
@@ -43,14 +43,14 @@ const App = () => {
       }
       return task;
     });
-    setTasks(updatedTasks);
+    setTasks(sortTasks(updatedTasks));
   };
 
   const updateTask = (updatedTask) => {
     const updatedTasks = tasks.map((task) =>
       task === selectedTask ? updatedTask : task
     );
-    setTasks(updatedTasks);
+    setTasks(sortTasks(updatedTasks));
     setSelectedTask(null);
   };
 
@@ -66,12 +66,15 @@ const App = () => {
   const handleFloatingButtonClick = () => {
     setSelectedTask(null);
     setShowForm(!showForm);
-    console.log('showForm', showForm);
+  };
+
+  const sortTasks = (tasks) => {
+    return tasks.sort((a, b) => a.completed - b.completed);
   };
 
   return (
     <div className="app-container">
-      <div className="task-list-container">
+      <div className={`task-list-container ${showForm || selectedTask ? 'hidden' : ''}`}>
         <h2>Lista de Tareas</h2>
         <TaskList
           tasks={tasks}
@@ -109,7 +112,7 @@ const App = () => {
       <div>
         {showForm ? (
           <FloatingButton
-            onClick={handleFloatingButtonClick}
+            onClick={goBackToList}
             type="back"
             color="#50577A"
             position={{ right: '75%', bottom: '10%' }}
