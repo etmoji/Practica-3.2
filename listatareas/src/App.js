@@ -66,6 +66,7 @@ const App = () => {
   const handleFloatingButtonClick = () => {
     setSelectedTask(null);
     setShowForm(!showForm);
+    console.log('showForm', showForm);
   };
 
   return (
@@ -105,6 +106,18 @@ const App = () => {
       >
         <i className="fas fa-sticky-note"></i>
       </FloatingButton>
+      <div>
+        {showForm ? (
+          <FloatingButton
+            onClick={handleFloatingButtonClick}
+            type="back"
+            color="#50577A"
+            position={{ right: '75%', bottom: '10%' }}
+          >
+            <i className="fas fa-arrow-left"></i>
+          </FloatingButton>
+        ) : null}
+      </div>
     </div>
   );
 };

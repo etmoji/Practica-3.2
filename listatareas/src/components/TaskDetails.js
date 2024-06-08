@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TaskForm from './TaskForm'; // Importa el componente TaskForm
 import FloatingButton from './FloatingButton';
 
 const TaskDetails = ({ task, goBack, removeTask, updateTask }) => {
   const [editing, setEditing] = useState(false);
 
+  useEffect(() => {
+    setEditing(false); // Desactiva el modo de edición cuando cambia la tarea
+  }, [task]);
 
   const handleEdit = () => {
     setEditing(true);
   };
+
+  const handleNoEdit = () => {
+    setEditing(false);
+  }
 
   const handleRemove = () => {
     removeTask();
@@ -20,12 +27,17 @@ const TaskDetails = ({ task, goBack, removeTask, updateTask }) => {
       <div className="task-details-header">
         <h2>Detalles de la Tarea</h2>
         {!editing ? (
-          <FloatingButton onClick={handleEdit} type="edit" color="#50577A" position={{ right: '70%', bottom: '10%' }}>
+          <div>
+            <FloatingButton onClick={handleEdit} type="edit" color="#50577A" position={{ right: '70%', bottom: '10%' }}>
             <i className="fas fa-pencil-alt"></i>
           </FloatingButton>
+          <FloatingButton onClick={goBack} type="back" color="#50577A" position={{ right: '65%', bottom: '10%' }}>
+            <i className="fas fa-arrow-left"></i>
+          </FloatingButton>
+          </div>
         ) : (
-          <FloatingButton onClick={goBack} type="back" color="#F3EFE0" position={{ right: '70%', bottom: '10%' }}>
-            <i className="fas fa-arrow-left" style={{ color: 'black' }}></i>
+          <FloatingButton onClick={handleNoEdit} type="back" color="#50577A" position={{ right: '70%', bottom: '10%' }}>
+            <i className="fas fa-arrow-left"></i>
           </FloatingButton>
         )}
         <FloatingButton onClick={handleRemove} type="delete" color="#ff0000" position={{ right: '75%', bottom: '10%' }}>
