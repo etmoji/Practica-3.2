@@ -112,7 +112,7 @@ const App = () => {
       <div>
         {showForm ? (
           <FloatingButton
-            onClick={goBackToList}
+            onClick={handleFloatingButtonClick}
             type="back"
             color="#50577A"
             position={{ right: '75%', bottom: '10%' }}
